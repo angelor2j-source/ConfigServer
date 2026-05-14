@@ -1,22 +1,18 @@
 spring:
   application:
     name: productos
-
-server:
-  port: 8082
-
-# Propiedades específicas del microservicio productos
-app:
-  nombre: "Servicio Productos"
-  descripcion: "Configuración centralizada para el microservicio productos"
-
-# Ejemplo de datasource (ajusta según necesites)
-spring:
   datasource:
     url: jdbc:h2:mem:productosdb
     driver-class-name: org.h2.Driver
     username: sa
     password:
+
+server:
+  port: 8082
+
+app:
+  nombre: "Servicio Productos"
+  descripcion: "Configuración centralizada para el microservicio productos"
 
 eureka:
   client:
