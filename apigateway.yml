@@ -1,6 +1,15 @@
 spring:
   application:
     name: apigateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+
 server:
   port: 8085
 
@@ -11,12 +20,7 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
 
-spring:
-  cloud:
-    gateway:
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    org.springframework.cloud.client.discovery: INFO
