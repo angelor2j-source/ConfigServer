@@ -6,6 +6,22 @@ spring:
   cloud:
     config:
       fail-fast: true
+    gateway:
+      server:
+        webflux:
+          discovery:
+            locator:
+              enabled: true
+              lower-case-service-id: true
+          routes:
+            - id: micro-server-categorias
+              uri: lb://categorias
+              predicates:
+                - Path=/api/categorias/**
+            - id: micro-server-productos
+              uri: lb://productos
+              predicates:
+                - Path=/api/productos/**
 
 server:
   port: 8085
@@ -19,29 +35,6 @@ eureka:
   instance:
     hostname: localhost
     instance-id: ${spring.application.name}:${random.value}
-
-spring:
-  cloud:
-    gateway:
-      server:
-        webflux:
-          discovery:
-            locator:
-              enabled: true
-              lower-case-service-id: true
-          routes:
-            - id: micro-server-categorias
-              uri: lb://categorias
-              predicates:
-                - Path=/api/categorias/**
-              #filters:
-              #  - StripPrefix=1
-            - id: micro-server-productos
-              uri: lb://productos
-              predicates:
-                - Path=/api/productos/**
-              #filters:
-              #  - StripPrefix=1
 
 logging:
   level:
