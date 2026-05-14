@@ -1,8 +1,26 @@
+spring:
+  application:
+    name: productos
+
 server:
-  port: 8081
+  port: 8082
+
+# Propiedades específicas del microservicio productos
+app:
+  nombre: "Servicio Productos"
+  descripcion: "Configuración centralizada para el microservicio productos"
+
+# Ejemplo de datasource (ajusta según necesites)
 spring:
   datasource:
     url: jdbc:h2:mem:productosdb
-    driverClassName: org.h2.Driver
+    driver-class-name: org.h2.Driver
     username: sa
     password:
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
